@@ -6,6 +6,6 @@
 
 # CERTAIN FOLDERS
 HACKATHON/myVenv
-
+HACKATHON/myProject/__pycache__
 
 # VENV FILES
