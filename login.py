@@ -14,6 +14,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
+    language = db.Column(db.String(40), nullable=False)
+    nationality = db.Column(db.String(50), nullable=False)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
@@ -25,7 +27,7 @@ def login_page():
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['username'] = username
-            return redirect(url_for('index'))
+            return redirect(url_for('profile'))
         else:
             return 'Invalid username or password'
     return render_template('login.html')
@@ -35,12 +37,27 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
+@app.route('/profile')
+def profile():
+    if 'username' in session:
+        username = session['username']
+        # Assuming you have a User model with a 'username' attribute
+        user = User.query.filter_by(username=username).first()
+        if user:
+            return render_template('profile.html', user=user)
+        else:
+            return "User not found"
+    else:
+        return redirect(url_for('login_page'))
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         # Handle form submission
         username = request.form['username']
         password = request.form['password']
+        nationality = request.form['nationality']
+        language = request.form['language']
 
         # Check if the username already exists
         existing_user = User.query.filter_by(username=username).first()
@@ -48,7 +65,7 @@ def signup():
             return 'Username already exists!'
 
         # Create a new user
-        new_user = User(username=username, password=password)
+        new_user = User(username=username, password=password, nationality=nationality, language=language)
         db.session.add(new_user)
         db.session.commit()
 
