@@ -35,6 +35,28 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        # Handle form submission
+        username = request.form['username']
+        password = request.form['password']
+
+        # Check if the username already exists
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            return 'Username already exists!'
+
+        # Create a new user
+        new_user = User(username=username, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        # Redirect to login page
+        return redirect(url_for('login_page'))
+    else:
+        return render_template('signup.html')
+
 @app.route('/users')
 def display_users():
     users = User.query.all()
