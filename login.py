@@ -1,13 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
 app.secret_key = 'XXXXXXXXXX'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
-
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -68,6 +67,23 @@ def index():
         return render_template('index.html', username=session['username'])
     else:
         return render_template('index.html')
+
+if __name__ == '__main__':
+    # Create all tables in the database
+    with app.app_context():
+          db.create_all()
+    app.run(debug=True)
+
+@app.route('/')
+def index():
+    if 'username' in session:
+        return render_template('index.html', username=session['username'])
+    else:
+        return render_template('index.html')
+
+@app.route('/chatroom')
+def message():
+    return render_template('message.html')
 
 if __name__ == '__main__':
     # Create all tables in the database
