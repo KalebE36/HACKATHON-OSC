@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, sessions
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -24,7 +24,7 @@ def login_page():
         # Check if user exists in the database
         user = User.query.filter_by(username=username, password=password).first()
         if user:
-            sessions['username'] = username
+            session['username'] = username
             return redirect(url_for('index'))
         else:
             return 'Invalid username or password'
@@ -32,7 +32,7 @@ def login_page():
 
 @app.route('/logout')
 def logout():
-    sessions.pop('username', None)
+    session.pop('username', None)
     return redirect(url_for('index'))
 
 @app.route('/users')
@@ -42,11 +42,13 @@ def display_users():
 
 @app.route('/')
 def index():
-    if 'username' in sessions:
-        return render_template('index.html', username=sessions['username'])
+    if 'username' in session:
+        return render_template('index.html', username=session['username'])
     else:
         return render_template('index.html')
 
 if __name__ == '__main__':
     # Create all tables in the database
+    with app.app_context():
+          db.create_all()
     app.run(debug=True)
