@@ -5,13 +5,7 @@
 
 
 # CERTAIN FOLDERS
-HACKATHON/bin
-HACKATHON/include
-HACKATHON/lib
-HACKATHON/setup
-HACKATHON/db.sqlite3
-HACKATHON/manage.py
+HACKATHON/myVenv
 
 
 # VENV FILES
-HACKATHON/pyvenv.cfg
