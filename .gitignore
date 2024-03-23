@@ -1,0 +1,11 @@
+# OS FILES
+.DS_Store
+
+
+
+# CERTAIN FOLDERS
+HACKATHON/bin
+HACKATHON/include
+
+# VENV FILES
+HACKATHON/pyvenv.cfg
