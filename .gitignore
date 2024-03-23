@@ -1,11 +1,17 @@
 # OS FILES
 .DS_Store
+.idea
 
 
 
 # CERTAIN FOLDERS
 HACKATHON/bin
 HACKATHON/include
+HACKATHON/lib
+HACKATHON/setup
+HACKATHON/db.sqlite3
+HACKATHON/manage.py
+
 
 # VENV FILES
 HACKATHON/pyvenv.cfg
