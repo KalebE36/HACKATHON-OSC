@@ -7,6 +7,7 @@ app.secret_key = 'XXXXXXXXXX'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -68,25 +69,17 @@ def index():
     else:
         return render_template('index.html')
 
-if __name__ == '__main__':
-    # Create all tables in the database
-    with app.app_context():
-          db.create_all()
-    app.run(debug=True)
-
-@app.route('/')
-def index():
-    if 'username' in session:
-        return render_template('index.html', username=session['username'])
-    else:
-        return render_template('index.html')
-
-@app.route('/chatroom')
+@app.route('/chat')
 def message():
     return render_template('message.html')
 
+@socketio.on("message")
+def sendMessage(message):
+    send(message, broadcast=True)
+
 if __name__ == '__main__':
     # Create all tables in the database
     with app.app_context():
           db.create_all()
     app.run(debug=True)
+
