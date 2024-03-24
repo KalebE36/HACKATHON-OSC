@@ -1,14 +1,70 @@
-<div class="Signup" style="width: 1440px; height: 1024px; position: relative; background: white">
-    <div class="Rectangle13" style="width: 720px; height: 1024px; left: 0px; top: 0px; position: absolute; background: #74CAB5"></div>
-    <div class="Cultureconnect" style="width: 680px; height: 96px; left: 20px; top: 228px; position: absolute; text-align: center; color: white; font-size: 96px; font-family: Fresca; font-weight: 400; word-wrap: break-word">CultureConnect</div>
-    <div class="SignUp" style="width: 419px; height: 150px; left: 880px; top: 154px; position: absolute; text-align: center; color: black; font-size: 96px; font-family: Fresca; font-weight: 400; word-wrap: break-word">Sign Up</div>
-    <div class="Login" style="width: 173px; height: 27px; left: 1002px; top: 671px; position: absolute; text-align: center; color: #70A1E9; font-size: 32px; font-family: Fresca; font-weight: 400; word-wrap: break-word">Login</div>
-    <div class="Group15" style="width: 450px; height: 80px; left: 862px; top: 525px; position: absolute">
-      <div class="Rectangle15" style="width: 450px; height: 80px; left: 0px; top: 0px; position: absolute; background: #ECECEC; border-radius: 20px"></div>
-      <div class="Password" style="width: 447px; height: 80px; left: 1px; top: 0px; position: absolute; text-align: center; color: black; font-size: 32px; font-family: Fresca; font-weight: 400; word-wrap: break-word">Password</div>
-    </div>
-    <div class="Group16" style="width: 450px; height: 80px; left: 862px; top: 419px; position: absolute">
-      <div class="Rectangle16" style="width: 450px; height: 80px; left: 0px; top: 0px; position: absolute; background: #ECECEC; border-radius: 20px"></div>
-      <div class="UsernameEmail" style="width: 381px; height: 65px; left: 34px; top: 9px; position: absolute; text-align: center; color: black; font-size: 32px; font-family: Fresca; font-weight: 400; word-wrap: break-word">Username/Email</div>
-    </div>
-  </div>
+.login-page {
+  display: flex;
+  height: 100vh;
+}
+
+.left-panel {
+  flex: 1;
+  background: #74CAB5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  font-size: 96px;
+  font-family: 'Fresca', sans-serif;
+  margin-top: 40px;
+  margin-bottom: 100px;
+  align-items: top;
+}
+
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle {
+  color: #7EA098;
+  font-size: 96px;
+  font-family: 'Fresca', sans-serif;
+  margin-bottom: 50px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 80px;
+  background: #ECECEC;
+  border-radius: 20px;
+  border: none;
+  padding-left: 20px;
+  font-size: 32px;
+  font-family: 'Fresca', sans-serif;
+}
+
+.submit-btn {
+  height: 80px;
+  background: #74CAB5;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-size: 32px;
+  font-family: 'Fresca', sans-serif;
+  cursor: pointer;
+}
+
+/* You may need to adjust the font-family if 'Fresca' isn't actually loaded in your project. */

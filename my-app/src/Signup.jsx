@@ -1,7 +1,7 @@
 import React from 'react';
- import './Login.css';
+ import './Signup.css';
 
-const LoginPage = () => {
+const SignUpPage = () => {
   return (
     <div className="login-page">
       <div className="left-panel">
@@ -23,4 +23,4 @@ const LoginPage = () => {
   );
 }
 
-export default LoginPage;
+export default SignUpPage;

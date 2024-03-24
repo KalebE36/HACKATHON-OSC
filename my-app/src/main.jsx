@@ -1,26 +1,15 @@
 import React from 'react';
-//import './Login.css';
+import ReactDOM from 'react-dom/client';
+import LoginPage from './Login';
 
-const LoginPage = () => {
-  return (
-    <div className="login-page">
-      <div className="left-panel">
-        <h1 className="title">CultureConnect</h1>
-      </div>
-      <div className="right-panel">
-        <h2 className="subtitle">Sign Up</h2>
-        <form className="login-form">
-          <div className="input-group">
-            <input type="text" id="username" name="username" placeholder="Username/Email" />
-          </div>
-          <div className="input-group">
-            <input type="password" id="password" name="password" placeholder="Password" />
-          </div>
-          <button type="submit" className="submit-btn">Login</button>
-        </form>
-      </div>
-    </div>
-  );
-}
 
-export default LoginPage;
+
+// Assuming your public/index.html file has a div with id='root'
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
+
+root.render(
+  <React.StrictMode>
+    <LoginPage />
+  </React.StrictMode>
+);
