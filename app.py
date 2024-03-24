@@ -4,7 +4,6 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
-# CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 CORS(app)
 app.secret_key = 'XXXXXXXXXX'
 
@@ -34,7 +33,6 @@ def login_page():
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['username'] = username
-            print(f"Logged in as: {session['username']}")
             return redirect(url_for('profile'))
         else:
             return 'Invalid username or password'
@@ -50,40 +48,24 @@ def get_users():
     return jsonify(users_data)
 
 
-@app.route('/api/profile')
+@app.route('/profile')
 def profile():
-    # return jsonify({'username': 'test', 'email': 'test@example.com'})
-
-    print("Accessing /api/profile")
     if 'username' in session:
         username = session['username']
-        print(f"Session username: {username}")
-        
+        # Assuming you have a User model with a 'username' attribute
         user = User.query.filter_by(username=username).first()
         if user:
-            user_data = {
-                'email': user.email,
-                'username': user.username,
-                'language': user.language,
-                'nationality': user.nationality,
-                'bio': user.bio
-            }
-            print(f"User data: {user_data}")
-            return jsonify(user_data)
+            return render_template('profile.html', user=user)
         else:
-            print("User not found")
-            return jsonify({'error': 'User not found'}), 404
+            return "User not found"
     else:
-        print("Not logged in")
-        return jsonify({'error': 'Not logged in'}), 401
-
+        return redirect(url_for('login_page'))
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         # Handle form submission
         data = request.json
-        print("Received data:", data)  # This will print the data received in the request
 
         email = data['email']
         username = data['username']
@@ -92,10 +74,10 @@ def signup():
         language = data['language']
         bio = data['bio']
 
-    # Check if the username already exists
+        # Check if the username already exists
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            return 'Username or Password already exists!'
+            return jsonify({'error': 'User already exists'}), 409
 
         # Create a new user
         new_user = User(email=email, username=username, password=password, nationality=nationality, language=language, bio=bio)
@@ -120,7 +102,6 @@ def display_users():
     users = User.query.all()
     return render_template('users.html', users=users)
 
-
 @app.route('/')
 def index():
     if 'username' in session:
@@ -142,13 +123,10 @@ def sendMessage(data):
     text = data['text']
     send({'username': username, 'text': text}, broadcast=True)
 
-
-
 if __name__ == '__main__':
     # Create all tables in the database
     with app.app_context():
-          db.create_all()
+        db.create_all()
     app.run(debug=True)
-    print("Flask app running...")
 
 
