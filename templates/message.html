@@ -1,5 +1,5 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,41 +8,65 @@
         integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
         crossorigin="anonymous"></script>
     <title>Document</title>
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/directmessage.css') }}">
+  </head>
+<body data_username= "{{ username }}">  
+    <div class="dm-container">
+    <div class="background-rectangle">
+      <div class='Rectangle3'></div>
+      <div class='Rectangle4'></div>
+      <div class='Rectangle5'></div>
+    </div>
+    <div class="header"></div>
+    <div class="header-text">CultureConnect</div>
 
-<body data_username= "{{ username }}">
+    <div class="circle"></div>
+    <div class="circle2"></div>
+
+    <img class="icon-comment" src="src/ic_fluent_comment_24_regular.png" alt="Comment">
+    <img class="icon-organization" src="src/ic_fluent_organization_24_regular.png" alt="Organization">
+    <img class="icon-custom" src="src/image1.png" alt="Custom">
+    <img class="icon-person" src="src/ic_fluent_person_24_regular.png" alt="Person">
+    <img class="icon-community" src="src/ic_fluent_people_24_regular.png" alt="People Community">
+    
     <div class="messages">
         <input placeholder="Message" id="messageInput"/>
     </div>
+    <div class="main-content">
+      <div class="footer"></div>
+      <div class="main-background"></div>
+    </div>
+    <div class="sidebar">
+      <div class="sidebar-background"></div>
+    </div>
+  </div>
 
-    <script>
-        const socket = io();
-        let messageContainer = document.querySelector(".messages");
-        let messageInput = document.getElementById("messageInput");
-        const username = document.body.dataset.username; // Corrected access to data attribute
-    
-        socket.on("connect", () => {
-            let p = document.createElement("p")
-            p.innerText = "You're connected"
-            messageContainer.appendChild(p)
-        })
-    
-        messageInput.addEventListener("keypress", (e) => {
-            if (e.which === 13 && messageInput.value.trim() !== "") {
-                // Correctly passing username and message
-                socket.emit("message", { username: username, text: messageInput.value });
-                messageInput.value = "";
-            }
-        })
-    
-        socket.on('message', (data) => {
-            // Correctly constructing message display
-            let messageElement = document.createElement("p")
-            messageElement.innerText = `${data.username}: ${data.text}`;
-            messageContainer.appendChild(messageElement);
-        })
-    </script>
-    
+  <script>
+    const socket = io();
+    let messageContainer = document.querySelector(".messages");
+    let messageInput = document.getElementById("messageInput");
+    const username = document.body.dataset.username; // Corrected access to data attribute
+
+    socket.on("connect", () => {
+        let p = document.createElement("p")
+        p.innerText = "You're connected"
+        messageContainer.appendChild(p)
+    })
+
+    messageInput.addEventListener("keypress", (e) => {
+        if (e.which === 13 && messageInput.value.trim() !== "") {
+            // Correctly passing username and message
+            socket.emit("message", { username: username, text: messageInput.value });
+            messageInput.value = "";
+        }
+    })
+
+    socket.on('message', (data) => {
+        // Correctly constructing message display
+        let messageElement = document.createElement("p")
+        messageElement.innerText = `${data.username}: ${data.text}`;
+        messageContainer.appendChild(messageElement);
+    })
+</script>
 </body>
-
-</html> 
+</html>

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import SignUpPage from "./Signup.jsx";
 //import SignUpPage from './Signup';
 //import CustomProfile from './Profile';
+import Chat from './Chat'; // Adjust the path according to your file structure
 
 
 
@@ -13,5 +14,6 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
     <React.StrictMode>
-        <SignUpPage />
+        {/* <SignUpPage /> */}
+        <Chat />
     </React.StrictMode>);
