@@ -3,16 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Login Page</title>
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/Login.css') }}"> -->
+  <link rel="stylesheet" href="static/css/Login.css">
 </head>
 <body>
-<h2>Login</h2>
-<form action="/login" method="POST">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username" required><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password" required><br><br>
-  <input type="submit" value="Login">
-</form>
+  <div class="login-page">
+    <div class="left-panel">
+      <h5 class="title">CultureConnect</h5>
+    </div>
+    <div class="right-panel">
+      <h2 class="subtitle">Log In</h2>
+      <form class="login-form"   action="/signup" method="POST">
+        <div class="input-group">
+          <input type="text" id="username" name="username" placeholder="Username/Email" onchange="setUsername(event.target.value)"/>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="Password"/>
+        </div>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+    </div>
+  </div>
+
 </body>
 </html>
