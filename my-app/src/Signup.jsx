@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import { Redirect } from 'react-router-dom';
 import './Signup.css';
 
-let userExists = false;
+
 const SignUpPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -10,6 +11,7 @@ const SignUpPage = () => {
     const [language, setLanguage] = useState('');
     const [bio, setBio] = useState('');
     const [error, setError] = useState(null);
+    const [redirect, setRedirect] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -41,13 +43,16 @@ const SignUpPage = () => {
 
             // Handle success, perhaps redirect to login page or display a success message
             console.log('Signup successful');
+            setRedirect(true);
         } catch (error) {
             console.error('Error during signup:', error.message);
             setError(error.message); // Set error message state
         }
     };
 
-
+    if (redirect) {
+        return <Redirect to="/login" />;
+    }
 
     return (
         <div className="login-page">
