@@ -30,7 +30,6 @@ def login_page():
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['username'] = username
-            print(f"Logged in as: {session['username']}")
             return redirect(url_for('profile'))
         else:
             return 'Invalid username or password'
@@ -112,6 +111,5 @@ if __name__ == '__main__':
     with app.app_context():
           db.create_all()
     app.run(debug=True)
-    print("Flask app running...")
 
 
