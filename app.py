@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_socketio import SocketIO, send
 
@@ -8,6 +8,8 @@ app.secret_key = 'XXXXXXXXXX'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
+
+users_data = {}
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -38,6 +40,11 @@ def login_page():
 def logout():
     session.pop('username', None)
     return redirect(url_for('login_page'))
+
+@app.route('/json')
+def get_users():
+    return jsonify(users_data)
+
 
 @app.route('/profile')
 def profile():
@@ -74,6 +81,14 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
 
+        users_data[username] = {
+            'email': email,
+            'password': password,
+            'nationality': nationality,
+            'language': language,
+            'bio': bio
+        }
+
         # Redirect to login page
         return redirect(url_for('login_page'))
     else:
@@ -98,12 +113,12 @@ def message():
         return render_template('message.html', username=session['username'])
     return redirect(url_for('login_page'))
 
+
 @socketio.on("message")
 def sendMessage(data):
     username = session['username']
     text = data['text']
     send({'username': username, 'text': text}, broadcast=True)
-
 
 if __name__ == '__main__':
     # Create all tables in the database
