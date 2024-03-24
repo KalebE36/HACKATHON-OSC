@@ -25,20 +25,26 @@
     <thead>
     <tr>
         <th>ID</th>
+        <th>Email</th>
         <th>Username</th>
         <th>Password</th>
         <th>Nationality</th>
         <th>Language</th>
+        <th>Bio</th>
+
     </tr>
     </thead>
     <tbody>
     {% for user in users %}
     <tr>
         <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
         <td>{{ user.password }}</td>
         <td>{{ user.nationality }}</td>
         <td>{{ user.language }}</td>
+        <td>{{ user.bio }}</td>
+
     </tr>
     {% endfor %}
     </tbody>
