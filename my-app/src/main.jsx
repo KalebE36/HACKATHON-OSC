@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-//import LoginPage from './Login';
+import LoginPage from './Login';
 //import SignUpPage from './Signup';
 //import CustomProfile from './Profile';
 import Homepage from './homepage';
