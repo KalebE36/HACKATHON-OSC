@@ -4,16 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+    h2 {
+      color: #74CAB5;
+      border-bottom: 2px solid #74CAB5;
+      padding-bottom: 5px;
+    }
+    p {
+      margin: 10px 0;
+    }
+    a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #74CAB5;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    a:hover {
+      background-color: #74CAB5;
+    }
+  </style>
 </head>
 <body>
-<h1>Welcome to Your Profile</h1>
-<div>
-  <h2>User Information</h2>
-  <p><strong>Username:</strong> {{ user.username }}</p>
-</div>
-<div>
-  <h2>Actions</h2>
-  <a href="/logout">Logout</a>
+<div class="container">
+  <h1>Welcome to Your Profile</h1>
+  <div>
+    <h2>User Information</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Nationality:</strong> {{ user.nationality }}</p>
+    <p><strong>Language:</strong> {{ user.language }}</p>
+    <p><strong>Bio:</strong> {{ user.bio }}</p>
+  </div>
+  <div>
+    <h2>Actions</h2>
+    <a href="/edit-profile">Edit Profile</a>
+    <a href="/change-password">Change Password</a>
+    <a href="/logout">Logout</a>
+    <a href="/chat">Chat</a>
+  </div>
 </div>
 </body>
 </html>
