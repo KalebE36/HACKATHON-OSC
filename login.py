@@ -12,10 +12,12 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     language = db.Column(db.String(40), nullable=False)
     nationality = db.Column(db.String(50), nullable=False)
+    bio = db.Column(db.String(300), nullable=True)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
@@ -54,18 +56,21 @@ def profile():
 def signup():
     if request.method == 'POST':
         # Handle form submission
+        email = request.form['email']
         username = request.form['username']
         password = request.form['password']
         nationality = request.form['nationality']
         language = request.form['language']
+        bio = request.form['bio']
 
-        # Check if the username already exists
+
+    # Check if the username already exists
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            return 'Username already exists!'
+            return 'Username or Password already exists!'
 
         # Create a new user
-        new_user = User(username=username, password=password, nationality=nationality, language=language)
+        new_user = User(email=email, username=username, password=password, nationality=nationality, language=language, bio=bio)
         db.session.add(new_user)
         db.session.commit()
 
