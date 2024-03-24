@@ -1,0 +1,109 @@
+.CustomProfile {
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+    background: white;
+  }
+  
+  .Group8 {
+    width: 1440px;
+    height: 96px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .Rectangle1 {
+    width: 1440px;
+    height: 96px;
+    position: absolute;
+    background: #74CAB5;
+  }
+  
+  .Cultureconnect {
+    width: 480px;
+    height: 96px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 48px;
+    font-family: Fresca, sans-serif;
+    word-wrap: break-word;
+  }
+  
+  .Group9 {
+    width: 72px;
+    height: 72px;
+    position: absolute;
+    top: 12px;
+    right: 16px; /* Adjusted for right alignment */
+  }
+  
+  .Group10 {
+    width: 72px;
+    height: 72px;
+    position: absolute;
+  }
+  
+  .Ellipse1 {
+    width: 72px;
+    height: 72px;
+    position: absolute;
+    background: #ECECEC;
+    border-radius: 50%; /* Changed for better browser compatibility */
+  }
+  
+  .Image1 {
+    width: 54px;
+    height: 54px;
+    position: absolute;
+    left: 9px;
+    top: 9px;
+  }
+  
+  .IconPerson {
+    width: 337px;
+    height: 337px;
+    position: absolute;
+    left: 551px;
+    top: 141px;
+  }
+  
+  .Vector {
+    width: 168.5px;
+    height: 224.67px;
+    position: absolute;
+    left: 84.25px; /* Adjusted to center inside the .IconPerson */
+    top: 56.165px; /* Adjusted to center inside the .IconPerson */
+    background: #212121;
+  }
+  
+  .Group7 {
+    width: 1263px;
+    height: 481px;
+    position: absolute;
+    left: 107px;
+    top: 523px;
+  }
+  
+  .College,
+  .Culture,
+  .BioInfo,
+  .Name {
+    position: absolute;
+    color: black;
+    font-size: 32px;
+    font-family: Fresca, sans-serif;
+    word-wrap: break-word;
+  }
+  
+  .College { top: 87px; left: 112px; }
+  .Culture { top: 174px; left: 112px; }
+  .BioInfo { top: 276px; }
+  .Name { top: 0; left: 112px; }
+  
+  /* Since .BioInfo has an underline, we define it separately */
+  .BioInfo {
+    text-decoration: underline;
+  }
+  

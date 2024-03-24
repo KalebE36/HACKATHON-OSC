@@ -1,3 +1,4 @@
+/* Updated to reflect the JSX structure and image layout */
 .login-page {
     display: flex;
     height: 100vh;
@@ -5,7 +6,7 @@
   
   .left-panel {
     flex: 1;
-    background: #74CAB5;
+    background: #74CAB5; /* Match the color in the provided image */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,11 +14,9 @@
   
   .title {
     color: white;
-    font-size: 96px;
+    font-size: 48px; /* Adjusted to be smaller, considering usual h5 sizes */
     font-family: 'Fresca', sans-serif;
-    margin-top: 40px;
-    margin-bottom: 100px;
-    align-items: top;
+    text-transform: uppercase; /* If the text should be uppercase */
   }
   
   .right-panel {
@@ -29,43 +28,47 @@
   }
   
   .subtitle {
-    color: #7EA098;
-    font-size: 96px;
+    color: #333; /* Typically, subtitles are not the same size as the title, adjusted for contrast */
+    font-size: 36px; /* Adjusted to be smaller than the title */
     font-family: 'Fresca', sans-serif;
-    margin-bottom: 50px;
+    margin-bottom: 30px; /* Adjusted based on visual spacing in the image */
   }
   
-  .login-form {
+  .signup-form { /* This className should match the one in the JSX */
     display: flex;
     flex-direction: column;
-    width: 450px;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Full width of the right panel */
+    max-width: 320px; /* Maximum width for the form */
   }
   
   .input-group {
     margin-bottom: 20px;
+    width: 100%; /* Full width to match the form's max-width */
   }
   
   .input-group input {
     width: 100%;
-    height: 80px;
+    height: 50px; /* Adjusted for a more standard input size */
     background: #ECECEC;
     border-radius: 20px;
     border: none;
-    padding-left: 20px;
-    font-size: 32px;
+    padding: 0 20px;
+    font-size: 18px; /* Standard input text size */
     font-family: 'Fresca', sans-serif;
   }
   
   .submit-btn {
-    height: 80px;
+    width: 100%; /* Full width to match the input fields */
+    height: 50px; /* Consistent with the input field height */
     background: #74CAB5;
     border-radius: 20px;
     border: none;
     color: white;
-    font-size: 32px;
+    font-size: 18px; /* Match input text size */
     font-family: 'Fresca', sans-serif;
     cursor: pointer;
+    margin-top: 10px; /* Space between buttons */
   }
-  
-  /* You may need to adjust the font-family if 'Fresca' isn't actually loaded in your project. */
   
