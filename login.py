@@ -37,7 +37,7 @@ def login_page():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('login_page'))
 
 @app.route('/profile')
 def profile():
