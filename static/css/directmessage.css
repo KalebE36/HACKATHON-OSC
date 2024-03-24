@@ -47,7 +47,7 @@
     height: 72px;
     background: #ececec;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(50%, 50%);
     margin-left: 1px;
   }
   
@@ -176,10 +176,10 @@
     background: #ececec;
   }
   
-  .footer-text {
+  .footer-text, .messages {
     position: absolute;
-    left: 7px;
-    top: 742px;
+    left: 475px;
+    top: 200px;
     width: 796px;
     font-size: 32px;
     font-family: 'Fresca', sans-serif;
@@ -251,7 +251,7 @@
   }
   
   .messages {
-    position: relative; /* If not already positioned */
+    /* position: relative; If not already positioned */
     z-index: 1000; /* Ensure it's a high enough value */
   }
 
