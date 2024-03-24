@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+        integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body data_username= "{{ username }}">
+    <div class="messages">
+        <input placeholder="Message" id="messageInput"/>
+    </div>
+
+    <script>
+        const socket = io();
+        let messageContainer = document.querySelector(".messages");
+        let messageInput = document.getElementById("messageInput");
+        const username = document.body.dataset.username; // Corrected access to data attribute
+    
+        socket.on("connect", () => {
+            let p = document.createElement("p")
+            p.innerText = "You're connected"
+            messageContainer.appendChild(p)
+        })
+    
+        messageInput.addEventListener("keypress", (e) => {
+            if (e.which === 13 && messageInput.value.trim() !== "") {
+                // Correctly passing username and message
+                socket.emit("message", { username: username, text: messageInput.value });
+                messageInput.value = "";
+            }
+        })
+    
+        socket.on('message', (data) => {
+            // Correctly constructing message display
+            let messageElement = document.createElement("p")
+            messageElement.innerText = `${data.username}: ${data.text}`;
+            messageContainer.appendChild(messageElement);
+        })
+    </script>
+    
+</body>
+
+</html> 

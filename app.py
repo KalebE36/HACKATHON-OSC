@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
+# CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 CORS(app)
 app.secret_key = 'XXXXXXXXXX'
 
@@ -33,6 +34,7 @@ def login_page():
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['username'] = username
+            print(f"Logged in as: {session['username']}")
             return redirect(url_for('profile'))
         else:
             return 'Invalid username or password'
@@ -48,6 +50,7 @@ def get_users():
     return jsonify(users_data)
 
 
+
 @app.route('/profile')
 def profile():
     if 'username' in session:
@@ -60,6 +63,7 @@ def profile():
             return "User not found"
     else:
         return redirect(url_for('login_page'))
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -103,6 +107,7 @@ def display_users():
     users = User.query.all()
     return render_template('users.html', users=users)
 
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -124,9 +129,13 @@ def sendMessage(data):
     text = data['text']
     send({'username': username, 'text': text}, broadcast=True)
 
+
+
 if __name__ == '__main__':
     # Create all tables in the database
     with app.app_context():
           db.create_all()
     app.run(debug=True)
+    print("Flask app running...")
+
 

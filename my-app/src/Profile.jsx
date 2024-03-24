@@ -1,63 +1,43 @@
-import React from 'react';
-import './Profile.css'; // make sure the CSS file name matches
+import React, { useEffect, useState } from 'react';
+import './Profile.css';
 
 const CustomProfile = () => {
+  const [user, setUser] = useState({
+    username: '',
+    email: '',
+    nationality: '',
+    language: '',
+    bio: '',
+  });
+
+  useEffect(() => {
+    // Replace `http://localhost:5000` with the correct URL to your Flask app
+    fetch('http://localhost:5000/api/profile', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include', // Needed if you're using sessions
+    })
+    .then(response => response.json())
+    .then(data => {
+      setUser(data);
+    })
+    .catch(error => {
+      console.error('Error fetching user data:', error);
+    });
+  }, []);
+
   return (
     <div className="CustomProfile">
-      <div className="Group8">
-        <div className="Rectangle1"></div>
-        <div className="Cultureconnect">CultureConnect</div>
-        <div className="Group9">
-          <div className="Group10">
-            <div className="Ellipse1"></div>
-            <img className="Image1" src="src/image2.png" alt="Placeholder" />
-          </div>
-        </div>
-      </div>
-      <div className="IconPerson">
-        <div className="Ellipse2"></div>
-        <img className="Image2" src="src/ic_fluent_person_24_regular.png" alt="Placeholder" />
-      </div>
-      <div className="Group7">
-      <div className="Name">
-      Name:
-      <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder=""
-        className="custom-text-box" 
-      />
-        </div>
-        <div className="College">
-        College:
-      <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder=""
-        className="custom-text-box" // Apply the CSS class to the input element
-      />
-        </div>
-        <div className="Culture">Culture:
-        <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder=""
-        className="custom-text-box" // Apply the CSS class to the input element
-      />
-        </div>
-        <div className="BioInfo">Bio info:
-        <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder=""
-        className="custom-text-box" // Apply the CSS class to the input element
-      />
-        </div>
-        
+      <h2>User Profile</h2>
+      <div className="profile-info">
+        <p><strong>Username:</strong> {user.username}</p>
+        <p><strong>Email:</strong> {user.email}</p>
+        <p><strong>Nationality:</strong> {user.nationality}</p>
+        <p><strong>Language:</strong> {user.language}</p>
+        <p><strong>Bio:</strong> {user.bio}</p>
       </div>
     </div>
   );
