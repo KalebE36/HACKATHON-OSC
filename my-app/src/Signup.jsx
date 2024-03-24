@@ -15,7 +15,6 @@ const SignUpPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Example: Adjust the URL to where your Flask backend is hosted
-        const url = 'http://127.0.0.1:5000/signup'; //change to local host for windows
         const userData = {
             username,
             password,
