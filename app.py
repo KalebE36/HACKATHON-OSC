@@ -50,32 +50,19 @@ def get_users():
     return jsonify(users_data)
 
 
+
 @app.route('/profile')
 def profile():
-    # return jsonify({'username': 'test', 'email': 'test@example.com'})
-
-    print("Accessing /api/profile")
     if 'username' in session:
         username = session['username']
-        print(f"Session username: {username}")
-        
+        # Assuming you have a User model with a 'username' attribute
         user = User.query.filter_by(username=username).first()
         if user:
-            user_data = {
-                'email': user.email,
-                'username': user.username,
-                'language': user.language,
-                'nationality': user.nationality,
-                'bio': user.bio
-            }
-            print(f"User data: {user_data}")
-            return jsonify(user_data)
+            return render_template('profile.html', user=user)
         else:
-            print("User not found")
-            return jsonify({'error': 'User not found'}), 404
+            return "User not found"
     else:
-        print("Not logged in")
-        return jsonify({'error': 'Not logged in'}), 401
+        return redirect(url_for('login_page'))
 
 
 @app.route('/signup', methods=['GET', 'POST'])
