@@ -53,6 +53,10 @@ def profile():
     else:
         return redirect(url_for('login_page'))
 
+@app.route('/change_password')
+def change_profile():
+    return render_template('change_profile.html')
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
