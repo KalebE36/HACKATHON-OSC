@@ -86,9 +86,9 @@ def display_users():
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template('index.html', username=session['username'])
+        return render_template('home.html', username=session['username'])
     else:
-        return render_template('index.html')
+        return render_template('home.html')
 
 @app.route('/chat')
 def message():
@@ -96,7 +96,6 @@ def message():
         print(session['username'])
         return render_template('message.html', username=session['username'])
     return redirect(url_for('login_page'))
-
 
 @socketio.on("message")
 def sendMessage(data):
