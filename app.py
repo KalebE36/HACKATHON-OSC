@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
+CORS(app)
 app.secret_key = 'XXXXXXXXXX'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -63,13 +65,15 @@ def profile():
 def signup():
     if request.method == 'POST':
         # Handle form submission
-        email = request.form['email']
-        username = request.form['username']
-        password = request.form['password']
-        nationality = request.form['nationality']
-        language = request.form['language']
-        bio = request.form['bio']
+        data = request.json
+        print("Received data:", data)  # This will print the data received in the request
 
+        email = data['email']
+        username = data['username']
+        password = data['password']
+        nationality = data['nationality']
+        language = data['language']
+        bio = data['bio']
 
     # Check if the username already exists
         existing_user = User.query.filter_by(username=username).first()
