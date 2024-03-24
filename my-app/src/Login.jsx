@@ -52,15 +52,15 @@ const LoginPage = () => {
       </div>
       <div className="right-panel">
         <h2 className="subtitle">Log In</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form">
           <div className="input-group">
-            <input type="text" id="username" name="username" placeholder="Username/Email" onChange={(e) => setUsername(e.target.value)} />
+            <input type="text" id="username" name="username" placeholder="Username/Email"/>
           </div>
           <div className="input-group">
-            <input type="password" id="password" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" id="password" name="password" placeholder="Password"/>
           </div>
           <div className="input-group">
-            <input type="email" id="email" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <input type="email" id="email" name="email" placeholder="Email" />
           </div>
           <button type="submit" className="submit-btn">Login</button>
         </form>
