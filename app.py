@@ -53,6 +53,10 @@ def profile():
     else:
         return redirect(url_for('login_page'))
 
+@app.route('/change_password')
+def change_profile():
+    return render_template('change_profile.html')
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -83,7 +87,7 @@ def display_users():
     return render_template('users.html', users=users)
 
 
-@app.route('/home')
+@app.route('/')
 def index():
     if 'username' in session:
         return render_template('home.html', username=session['username'])
