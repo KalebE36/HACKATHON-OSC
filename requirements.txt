@@ -1,0 +1,14 @@
+asgiref==3.7.2
+click==8.1.7
+colorama==0.4.6
+Flask==2.0.2  # Adjusted Flask version to the latest as of my last update
+Flask-Cors==3.0.10  # Adjust Flask-Cors to the latest compatible version
+Flask-SocketIO==5.3.0  # Use the latest compatible version
+Flask-SQLAlchemy==2.5.1  # Adjust Flask-SQLAlchemy to a compatible version
+itsdangerous==2.1.2
+Jinja2==3.0.3
+MarkupSafe==2.0.1
+python-engineio==4.3.0  # Adjust versions to match Flask-SocketIO requirements
+python-socketio==5.4.0
+SQLAlchemy==1.4.27  # Adjust SQLAlchemy to a compatible version
+Werkzeug==2.0.2
