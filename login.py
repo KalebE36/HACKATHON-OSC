@@ -94,6 +94,7 @@ def index():
 @app.route('/chat')
 def message():
     if 'username' in session:
+        print(session['username'])
         return render_template('message.html', username=session['username'])
     return redirect(url_for('login_page'))
 
