@@ -1,0 +1,74 @@
+/* Updated to reflect the JSX structure and image layout */
+.login-page {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-panel {
+    flex: 1;
+    background: #74CAB5; /* Match the color in the provided image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .title {
+    color: white;
+    font-size: 48px; /* Adjusted to be smaller, considering usual h5 sizes */
+    font-family: 'Fresca', sans-serif;
+    text-transform: uppercase; /* If the text should be uppercase */
+  }
+  
+  .right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .subtitle {
+    color: #333; /* Typically, subtitles are not the same size as the title, adjusted for contrast */
+    font-size: 36px; /* Adjusted to be smaller than the title */
+    font-family: 'Fresca', sans-serif;
+    margin-bottom: 30px; /* Adjusted based on visual spacing in the image */
+  }
+  
+  .signup-form { /* This className should match the one in the JSX */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Full width of the right panel */
+    max-width: 320px; /* Maximum width for the form */
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    width: 100%; /* Full width to match the form's max-width */
+  }
+  
+  .input-group input {
+    width: 100%;
+    height: 50px; /* Adjusted for a more standard input size */
+    background: #ECECEC;
+    border-radius: 20px;
+    border: none;
+    padding: 0 20px;
+    font-size: 18px; /* Standard input text size */
+    font-family: 'Fresca', sans-serif;
+  }
+  
+  .submit-btn {
+    width: 100%; /* Full width to match the input fields */
+    height: 50px; /* Consistent with the input field height */
+    background: #74CAB5;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-size: 18px; /* Match input text size */
+    font-family: 'Fresca', sans-serif;
+    cursor: pointer;
+    margin-top: 10px; /* Space between buttons */
+  }
+  
