@@ -38,7 +38,6 @@
         socket.on('message', (data) => {
             // Correctly constructing message display
             let messageElement = document.createElement("p")
-            print("OBVIOUS")
             messageElement.innerText = `${data.username}: ${data.text}`;
             messageContainer.appendChild(messageElement);
         })

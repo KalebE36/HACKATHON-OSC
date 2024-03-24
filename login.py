@@ -99,8 +99,10 @@ def message():
     return redirect(url_for('login_page'))
 
 @socketio.on("message")
-def sendMessage(message):
-    send(message, broadcast=True)
+def sendMessage(data):
+    username = session['username']
+    text = data['text']
+    send({'username': username, 'text': text}, broadcast=True)
 
 
 if __name__ == '__main__':
