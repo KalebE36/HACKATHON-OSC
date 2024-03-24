@@ -110,7 +110,6 @@ def sendMessage(data):
 
 
 if __name__ == '__main__':
-    # Create all tables in the database
     with app.app_context():
           db.create_all()
     app.run(debug=True)
