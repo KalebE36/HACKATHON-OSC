@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css';
+import { useUser } from './UserContext';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+
+  const {user, setUser} = useUser();
 
 
   const handleSubmit = async (e) => {
@@ -30,6 +33,10 @@ const LoginPage = () => {
       });
 
       if (!response.ok) throw new Error('Signup failed');
+
+      const userresponse = await response.json()
+
+      console.log(userresponse)
 
       // Handle success, perhaps redirect to login page or display a success message
       console.log('Signup successful');
