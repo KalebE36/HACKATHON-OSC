@@ -1,0 +1,107 @@
+.Signup {
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+    background: white;
+}
+
+.Rectangle13 {
+    width: 720px;
+    height: 1024px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #74CAB5;
+}
+
+.Cultureconnect {
+    width: 680px;
+    height: 96px;
+    left: 20px;
+    top: 228px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 96px;
+    font-family: Fresca;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.SignUp {
+    width: 419px;
+    height: 150px;
+    left: 880px;
+    top: 154px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 96px;
+    font-family: Fresca;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Login {
+    width: 173px;
+    height: 27px;
+    left: 1002px;
+    top: 671px;
+    position: absolute;
+    text-align: center;
+    color: #70A1E9;
+    font-size: 32px;
+    font-family: Fresca;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Group15, .Group16 {
+    width: 450px;
+    height: 80px;
+    position: absolute;
+}
+
+.Rectangle15, .Rectangle16 {
+    width: 450px;
+    height: 80px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #ECECEC;
+    border-radius: 20px;
+}
+
+.Password, .UsernameEmail {
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 32px;
+    font-family: Fresca;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.Password {
+    width: 447px;
+    height: 80px;
+    left: 1px;
+    top: 0px;
+}
+
+.UsernameEmail {
+    width: 381px;
+    height: 65px;
+    left: 34px;
+    top: 9px;
+}
+
+.Group15 {
+    left: 862px;
+    top: 525px;
+}
+
+.Group16 {
+    left: 862px;
+    top: 419px;
+}

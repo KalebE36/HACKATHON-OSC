@@ -1,0 +1,43 @@
+.Dms {
+    width: 1440px;
+    height: 1024px;
+    position: relative;
+    background: white;
+}
+
+/* Add your CSS styles for other classes here */
+
+.Rectangle2 {
+    width: 100px;
+    height: 928px;
+    left: 1339px;
+    top: 96px;
+    position: absolute;
+    opacity: 0.50;
+    background: #D9D9D9;
+}
+
+.Rectangle1 {
+    width: 1440px;
+    height: 96px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #74CAB5;
+}
+
+.Cultureconnect {
+    width: 480px;
+    height: 96px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 48px;
+    font-family: Fresca;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Add more CSS styles for other classes as needed */
