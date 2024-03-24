@@ -1,0 +1,26 @@
+import React from 'react';
+import './LoginPage.css'; // Make sure the path to your CSS file is correct
+
+const LoginPage = () => {
+  return (
+    <div className="Login">
+      <div className="Rectangle13"></div>
+      <div className="Cultureconnect">CultureConnect</div>
+      <div className="LoginTitle">Login</div>
+      <form action="/action_page.php" className="LoginForm">
+        <div className="group">
+          <label htmlFor="username" className="inputLabel">Username/Email</label>
+          <input type="text" id="username" name="username" className="inputBox" />
+        </div>
+        <div className="group">
+          <label htmlFor="password" className="inputLabel">Password</label>
+          <input type="password" id="password" name="password" className="inputBox" />
+        </div>
+        <input type="submit" value="Login" className="submitBtn" />
+      </form>
+      <div className="RegisterSignUp">register/sign up</div>
+    </div>
+  );
+}
+
+export default LoginPage;
