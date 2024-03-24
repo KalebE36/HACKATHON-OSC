@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import LoginPage from './Login';
+//import LoginPage from './Login';
+import SignUpPage from "./Signup.jsx";
 //import SignUpPage from './Signup';
 //import CustomProfile from './Profile';
-import Homepage from './homepage';
 
 
 
@@ -13,5 +13,5 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <Homepage />
+    <SignUpPage />
   </React.StrictMode>);
