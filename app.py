@@ -1,18 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
-# CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
-CORS(app)
 app.secret_key = 'XXXXXXXXXX'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-users_data = {}
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -45,12 +41,6 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('login_page'))
 
-@app.route('/json')
-def get_users():
-    return jsonify(users_data)
-
-
-
 @app.route('/profile')
 def profile():
     if 'username' in session:
@@ -69,38 +59,24 @@ def profile():
 def signup():
     if request.method == 'POST':
         # Handle form submission
-        data = request.json
-        print("Received data:", data)  # This will print the data received in the request
-
-        email = data['email']
-        username = data['username']
-        password = data['password']
-        nationality = data['nationality']
-        language = data['language']
-        bio = data['bio']
-
-    # Check if the username already exists
+        email = request.form['email']
+        username = request.form['username']
+        password = request.form['password']
+        nationality = request.form['nationality']
+        language = request.form['language']
+        bio = request.form['bio']
+        # Check if the username already exists
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             return 'Username or Password already exists!'
-
         # Create a new user
         new_user = User(email=email, username=username, password=password, nationality=nationality, language=language, bio=bio)
         db.session.add(new_user)
         db.session.commit()
-
-        users_data[username] = {
-            'email': email,
-            'password': password,
-            'nationality': nationality,
-            'language': language,
-            'bio': bio
-        }
-
-        # Redirect to login page
         return redirect(url_for('login_page'))
     else:
         return render_template('signup.html')
+
 
 @app.route('/users')
 def display_users():
