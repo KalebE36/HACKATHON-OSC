@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,37 +10,39 @@
     <title>Document</title>
 </head>
 
-<body>
+<body data_username= "{{ username }}">
     <div class="messages">
         <input placeholder="Message" id="messageInput"/>
     </div>
 
     <script>
         const socket = io();
-
         let messageContainer = document.querySelector(".messages");
-
+        let messageInput = document.getElementById("messageInput");
+        const username = document.body.dataset.username; // Corrected access to data attribute
+    
         socket.on("connect", () => {
             let p = document.createElement("p")
             p.innerText = "You're connected"
             messageContainer.appendChild(p)
         })
-
-        let messageInput = document.getElementById("messageInput")
+    
         messageInput.addEventListener("keypress", (e) => {
-            if (e.which === 13) {
-                socket.emit("message", messageInput.value)
-                messageInput.value = ""
+            if (e.which === 13 && messageInput.value.trim() !== "") {
+                // Correctly passing username and message
+                socket.emit("message", { username: username, text: messageInput.value });
+                messageInput.value = "";
             }
         })
-
-        socket.on('message', (message) => {
+    
+        socket.on('message', (data) => {
+            // Correctly constructing message display
             let messageElement = document.createElement("p")
-            messageElement.innerText = message
-            messageContainer.appendChild(messageElement)
+            messageElement.innerText = `${data.username}: ${data.text}`;
+            messageContainer.appendChild(messageElement);
         })
-
     </script>
+    
 </body>
 
-</html>
+</html> 
