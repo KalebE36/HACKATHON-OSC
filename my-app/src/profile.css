@@ -52,7 +52,13 @@
     background: #ECECEC;
     border-radius: 50%; /* Changed for better browser compatibility */
   }
-  
+  .Ellipse2 {
+    width: 337px;
+    height: 337px;
+    position: absolute;
+    background: #ECECEC;
+    border-radius: 50%; /* Changed for better browser compatibility */
+  }
   .Image1 {
     width: 54px;
     height: 54px;
@@ -60,6 +66,15 @@
     left: 9px;
     top: 9px;
   }
+  .Image2 {
+    width: 224px;
+    height: 224px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
   
   .IconPerson {
     width: 337px;
@@ -85,6 +100,18 @@
     left: 107px;
     top: 523px;
   }
+/* CustomTextBox.css */
+
+.custom-text-box {
+  margin-left: 20px;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 16px;
+}
+
   
   .College,
   .Culture,
@@ -99,7 +126,7 @@
   
   .College { top: 87px; left: 112px; }
   .Culture { top: 174px; left: 112px; }
-  .BioInfo { top: 276px; }
+  .BioInfo { top: 276px; left: 112px; }
   .Name { top: 0; left: 112px; }
   
   /* Since .BioInfo has an underline, we define it separately */
