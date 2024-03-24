@@ -4,6 +4,7 @@ from flask_cors import CORS
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
+# CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 CORS(app)
 app.secret_key = 'XXXXXXXXXX'
 
@@ -33,6 +34,7 @@ def login_page():
         user = User.query.filter_by(username=username, password=password).first()
         if user:
             session['username'] = username
+            print(f"Logged in as: {session['username']}")
             return redirect(url_for('profile'))
         else:
             return 'Invalid username or password'
@@ -48,18 +50,33 @@ def get_users():
     return jsonify(users_data)
 
 
-@app.route('/profile')
+@app.route('/api/profile')
 def profile():
+    # return jsonify({'username': 'test', 'email': 'test@example.com'})
+
+    print("Accessing /api/profile")
     if 'username' in session:
         username = session['username']
-        # Assuming you have a User model with a 'username' attribute
+        print(f"Session username: {username}")
+        
         user = User.query.filter_by(username=username).first()
         if user:
-            return render_template('profile.html', user=user)
+            user_data = {
+                'email': user.email,
+                'username': user.username,
+                'language': user.language,
+                'nationality': user.nationality,
+                'bio': user.bio
+            }
+            print(f"User data: {user_data}")
+            return jsonify(user_data)
         else:
-            return "User not found"
+            print("User not found")
+            return jsonify({'error': 'User not found'}), 404
     else:
-        return redirect(url_for('login_page'))
+        print("Not logged in")
+        return jsonify({'error': 'Not logged in'}), 401
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -103,6 +120,7 @@ def display_users():
     users = User.query.all()
     return render_template('users.html', users=users)
 
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -124,9 +142,13 @@ def sendMessage(data):
     text = data['text']
     send({'username': username, 'text': text}, broadcast=True)
 
+
+
 if __name__ == '__main__':
     # Create all tables in the database
     with app.app_context():
           db.create_all()
     app.run(debug=True)
+    print("Flask app running...")
+
 

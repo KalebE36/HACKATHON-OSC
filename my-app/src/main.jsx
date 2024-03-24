@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-//import LoginPage from './Login';
-import SignUpPage from "./Signup.jsx";
-//import SignUpPage from './Signup';
-//import CustomProfile from './Profile';
+import LoginPage from './Login';
+import SignUpPage from './Signup';
+import CustomProfile from './Profile';
+import { UserProvider } from './UserContext';
 
 
 
@@ -13,5 +13,9 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <SignUpPage />
+    <UserProvider>
+      <LoginPage />
+    {/* <SignUpPage /> */}
+    {/* <CustomProfile /> */}
+    </UserProvider>
   </React.StrictMode>);
