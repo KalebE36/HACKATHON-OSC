@@ -1,7 +1,33 @@
-import React from 'react';
+import {io} from 'socket.io-client';
+import React, { useState, useEffect } from 'react';
 import './directmessage.css'; // Import the CSS file
 
+const socket = io('http://localhost:5000'); // Change to your server address
+
 const DMs = () => {
+  const [messages, setMessages] = useState([]);
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+    // Listening for messages from the server
+    socket.on('message', message => {
+      setMessages(messages => [...messages, message]);
+    });
+    // Cleanup on component unmount
+    return () => {
+      socket.off('message');
+    };
+  }, []);
+
+  const sendMessage = (e) => {
+    e.preventDefault(); // Prevent page reload
+    if (text.trim()) {
+      socket.emit('message', { text });
+      setText(''); // Clear input after sending
+    }
+  };
+
+
   return (
     <div className="dm-container">
       <div className="background-rectangle">
@@ -23,8 +49,28 @@ const DMs = () => {
       
       <div className="main-content">
         <div className="footer"></div>
-        {/* Changed from a div to an input element to make it a usable textbox */}
-        <input type="text" className="footer-text" placeholder="Type Here" />
+              {/* Messages display */}
+      <div className="messages">
+        {messages.map((message, index) => (
+          <div key={index}>
+            {message.user}: {message.text} {/* Modify based on your message structure */}
+          </div>
+        ))}
+      </div>
+
+      {/* Message input and send button */}
+      <div className="message-input">
+        <form onSubmit={sendMessage}>
+          <input
+            type="text"
+            className="footer-text"
+            placeholder="Type Here"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button type="submit">Send</button>
+        </form>
+      </div>
         <div className="main-background"></div>
       </div>
       

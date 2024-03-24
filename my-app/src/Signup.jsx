@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import './Signup.css';
 
 
@@ -11,7 +11,7 @@ const SignUpPage = () => {
     const [language, setLanguage] = useState('');
     const [bio, setBio] = useState('');
     const [error, setError] = useState(null);
-    const [redirect, setRedirect] = useState(false);
+    // const [redirect, setRedirect] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -50,9 +50,9 @@ const SignUpPage = () => {
         }
     };
 
-    if (redirect) {
-        return <Redirect to="/login" />;
-    }
+    // if (redirect) {
+    //     return <Redirect to="/login" />;
+    // }
 
     return (
         <div className="login-page">
