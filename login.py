@@ -37,7 +37,7 @@ def login_page():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('login_page'))
 
 @app.route('/profile')
 def profile():
@@ -93,11 +93,15 @@ def index():
 
 @app.route('/chat')
 def message():
-    return render_template('message.html')
+    if 'username' in session:
+        print(session['username'])
+        return render_template('message.html', username=session['username'])
+    return redirect(url_for('login_page'))
 
 @socketio.on("message")
 def sendMessage(message):
     send(message, broadcast=True)
+
 
 if __name__ == '__main__':
     # Create all tables in the database
