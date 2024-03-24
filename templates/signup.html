@@ -1,26 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <link rel="stylesheet" href="Signup.css">
 </head>
 <body>
-<h2>Sign Up</h2>
-<form action="/signup" method="POST">
-    <label for="email">Email:</label><br>
-    <input type="text" id="email" name="email" required><br>
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" required><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
-    <label for="nationality">Nationality:</label><br>
-    <input type="text" id="nationality" name="nationality" required><br>
-    <label for="language">Language:</label><br>
-    <input type="text" id="language" name="language" required><br><br>
-    <label for="bio">Bio:</label><br>
-    <input type="text" id="bio" name="bio" required><br><br>
-    <input type="submit" value="Sign Up">
-</form>
+  <div class="login-page">
+    <div class="left-panel">
+      <h1 class="title">CultureConnect</h1>
+    </div>
+    <div class="right-panel">
+      <h2 class="subtitle">Sign Up</h2>
+      <form class="signup-form"  action="/signup" method="POST">
+        <div class="input-group">
+          <input type="text" id="username" name="username" placeholder="Username" onchange="setUsername(event.target.value)"/>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="Password" onchange="setPassword(event.target.value)"/>
+        </div>
+        <div class="input-group">
+          <input type="email" id="email" name="email" placeholder="Email" onchange="setEmail(event.target.value)" />
+        </div>
+        <div class="input-group">
+          <input type="text" id="nationality" name="nationality" placeholder="Nationality" onchange="setNationality(event.target.value)" />
+        </div>
+        <div class="input-group">
+          <input type="text" id="language" name="language" placeholder="Language" onchange="setLanguage(event.target.value)" />
+        </div>
+        <div class="input-group">
+          <input type="text" id="bio" name="bio" placeholder="Bio" onchange="setBio(event.target.value)" />
+        </div>
+        <button type="submit" class="submit-btn">Signup</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Placeholder functions for event handlers
+    function handleSubmit(event) {
+      event.preventDefault();
+      // Implement your form submission logic here
+      console.log("Form submitted!");
+    }
+
+    function setUsername(value) {
+      // Implement setUsername logic here
+      console.log("Username set to:", value);
+    }
+
+    function setPassword(value) {
+      // Implement setPassword logic here
+      console.log("Password set to:", value);
+    }
+
+    function setEmail(value) {
+      // Implement setEmail logic here
+      console.log("Email set to:", value);
+    }
+
+    function setNationality(value) {
+      // Implement setNationality logic here
+      console.log("Nationality set to:", value);
+    }
+
+    function setLanguage(value) {
+      // Implement setLanguage logic here
+      console.log("Language set to:", value);
+    }
+
+    function setBio(value) {
+      // Implement setBio logic here
+      console.log("Bio set to:", value);
+    }
+  </script>
 </body>
 </html>
